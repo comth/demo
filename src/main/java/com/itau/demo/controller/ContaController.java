@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/conta")
 public class ContaController {
 
     @Autowired
     private ContaService contaService;
+
+    @GetMapping("/health")
+    public ResponseEntity<Object> getTest(){
+        return ResponseEntity.ok("Ok");
+    }
 
     @GetMapping
     public ResponseEntity<List<Conta>> getAll(){
@@ -35,7 +39,7 @@ public class ContaController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("transferencia")
+    @PostMapping("/transferencia")
     @Transactional
     public ResponseEntity<Transferencia> transferencia(@RequestBody Transferencia transferencia){
         Transferencia response = contaService.transferir(transferencia);
