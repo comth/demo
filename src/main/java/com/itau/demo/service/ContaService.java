@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,23 +32,32 @@ public class ContaService {
         return this.contaRepository.save(conta);
     }
 
-    @Transactional
     public Transferencia transferir(Transferencia transferencia) {
-        if(transferencia.getValor() > 1000) throw new Error("Valor acima do permitido");
-
         Conta remetente = get(transferencia.getRemetente().getNumero());
         Conta destinatario = get(transferencia.getDestinatario().getNumero());
+        transferencia.setRemetente(remetente);
+        transferencia.setDestinatario(destinatario);
+        if(transferencia.getValor() > 1000){
+            saveTransferencia(transferencia, false);
+            throw new Error("Valor acima do permitido");
+        }
 
-        if(remetente.getSaldo() < transferencia.getValor()) throw new Error("Sem saldo suficiente na conta " + remetente.getNumero());
+        if(remetente.getSaldo() < transferencia.getValor()){
+            saveTransferencia(transferencia, false);
+            throw new Error("Sem saldo suficiente na conta " + remetente.getNumero());
+        }
 
         remetente.setSaldo(remetente.getSaldo() - transferencia.getValor());
-        destinatario.setSaldo(remetente.getSaldo() + transferencia.getValor());
-        transferencia.setEfetivada(true);
+        destinatario.setSaldo(destinatario.getSaldo() + transferencia.getValor());
 
-        this.contaRepository.save(remetente);
-        this.contaRepository.save(destinatario);
-        this.transferenciaRepository.save(transferencia);
-
+        transferencia = saveTransferencia(transferencia, true);
+        remetente.getTransferencias().add(transferencia);
+        destinatario.getTransferencias().add(transferencia);
         return transferencia;
+    }
+
+    private Transferencia saveTransferencia(Transferencia transferencia, Boolean efetivada){
+        transferencia.setEfetivada(efetivada);
+        return this.transferenciaRepository.save(transferencia);
     }
 }

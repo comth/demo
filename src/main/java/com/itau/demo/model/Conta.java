@@ -1,17 +1,28 @@
 package com.itau.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class Conta {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     @Column(unique = true)
     private String numero;
     private String nomeCliente;
     private Float saldo;
+
+    @OneToMany(cascade=CascadeType.REFRESH)
+    private List<Transferencia> transferencias = new ArrayList<Transferencia>();
+
+    public List<Transferencia> getTransferencias() {
+        return transferencias;
+    }
+
+    public void setTransferencias(List<Transferencia> transferencias) {
+        this.transferencias = transferencias;
+    }
 
     public Integer getId() {
         return id;

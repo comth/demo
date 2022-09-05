@@ -1,15 +1,18 @@
 package com.itau.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.WhereJoinTable;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Transferencia {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+    @ManyToOne
     private Conta remetente;
+    @ManyToOne
     private Conta destinatario;
     private Float valor;
     private Boolean efetivada;
