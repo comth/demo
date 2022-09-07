@@ -13,17 +13,6 @@ public class Conta {
     private String nomeCliente;
     private Float saldo;
 
-    @OneToMany(cascade=CascadeType.REFRESH)
-    private List<Transferencia> transferencias = new ArrayList<Transferencia>();
-
-    public List<Transferencia> getTransferencias() {
-        return transferencias;
-    }
-
-    public void setTransferencias(List<Transferencia> transferencias) {
-        this.transferencias = transferencias;
-    }
-
     public Integer getId() {
         return id;
     }

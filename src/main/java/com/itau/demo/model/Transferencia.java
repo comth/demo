@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Transferencia {
+public class Transferencia implements Comparable<Transferencia>{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
@@ -15,7 +15,7 @@ public class Transferencia {
     @ManyToOne
     private Conta destinatario;
     private Float valor;
-    private Boolean efetivada;
+    private Boolean efetivada = false;
     private Date data = new Date();
 
     public Integer getId() {
@@ -64,5 +64,10 @@ public class Transferencia {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    @Override
+    public int compareTo(Transferencia t) {
+        return t.getData().compareTo(getData());
     }
 }

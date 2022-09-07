@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface ContaRepository extends JpaRepository<Conta, Integer> {
     @Query("SELECT t FROM Conta t WHERE t.numero = ?1")
     Conta getByNumero(String numero);
+
+    boolean existsByNumero(String numero);
 }
