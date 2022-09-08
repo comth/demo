@@ -18,9 +18,9 @@ Tecnologias utilizadas:
  - Repositorys
   
 Em Implementação:
-- Testes Unitários
+ - Testes Unitários
   
- Pré condições para a execução do projeto:
+Pré condições para a execução do projeto:
   - Instalação Java 17
   - Instalação Maven
   
@@ -31,7 +31,7 @@ Se o retorno for “Ok” sua aplicação está de pé.
 - Para acessar o Swagger vá para o link: http://localhost:8080/swagger-ui/index.html
 - Para acessar o console do H2 siga as instruções que aparecem no terminal na inicialização do projeto. *A string de conexão com o banco é atualizada a cada nova execução da aplicação.*
   
-  Referências:
+Referências:
 - https://www.baeldung.com/spring-rest-openapi-documentation
 - https://www.baeldung.com/transaction-configuration-with-jpa-and-spring
 - https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa
