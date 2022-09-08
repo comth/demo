@@ -28,7 +28,7 @@ public class ContaController {
 
     @Operation(summary = "Verifica se a aplicação está rodando")
     @GetMapping("/health")
-    public ResponseEntity<Object> getTest(){
+    public ResponseEntity<Object> getHealth(){
         return ResponseEntity.ok("Ok");
     }
 
