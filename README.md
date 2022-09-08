@@ -24,7 +24,7 @@ Em Implementação:
   - Instalação Java 17
   - Instalação Maven
   
-Orientações para subir a aplicação (considerando que o código já foi baixado e você está na pasta raiz do projeto):
+Orientações para subir a aplicação (*considerando que o código já foi baixado e você está na pasta raiz do projeto*):
 - Execute: mvn spring-boot:run
 - Em um navegador verifique se a aplicação está de pé com o link: localhost:8080/health  
 Se o retorno for “Ok” sua aplicação está de pé.
