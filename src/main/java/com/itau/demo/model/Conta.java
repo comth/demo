@@ -1,12 +1,14 @@
 package com.itau.demo.model;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Schema.AccessMode;
 
 import javax.persistence.*;
-import java.util.*;
 
 @Entity
 public class Conta {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Schema(accessMode = AccessMode.READ_ONLY)
     private Integer id;
     @Column(unique = true)
     private String numero;

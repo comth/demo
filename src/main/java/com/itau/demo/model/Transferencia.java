@@ -1,7 +1,7 @@
 package com.itau.demo.model;
 
-import org.hibernate.annotations.WhereJoinTable;
-
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Schema.AccessMode;
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,13 +9,16 @@ import java.util.Date;
 public class Transferencia implements Comparable<Transferencia>{
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Schema(accessMode = AccessMode.READ_ONLY)
     private Integer id;
     @ManyToOne
     private Conta remetente;
     @ManyToOne
     private Conta destinatario;
     private Float valor;
+    @Schema(accessMode = AccessMode.READ_ONLY)
     private Boolean efetivada = false;
+    @Schema(accessMode = AccessMode.READ_ONLY)
     private Date data = new Date();
 
     public Integer getId() {
